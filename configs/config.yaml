@@ -1,0 +1,38 @@
+data:
+  train_dir: "C:\Users\21438\Desktop\date\train"
+  test_dir: "C:\Users\21438\Desktop\date\test"
+  validation_split: 0.2
+  input_size: [224, 224]
+  num_classes: 2
+  
+model:
+  name: unet_classifier
+  base_channels: 32
+  num_layers: 4
+  pretrained_encoder: false
+  
+training:
+  batch_size: 4
+  epochs: 100
+  learning_rate: 1e-4
+  optimizer: adam
+  scheduler: ReduceLROnPlateau
+  scheduler_patience: 5
+  scheduler_factor: 0.5
+  
+early_stopping:
+  enabled: true
+  patience: 10
+  metric: val_loss
+  
+loss:
+  name: cross_entropy
+  
+logging:
+  exp_name: chest_xray_classification
+  log_dir: runs
+  checkpoint_dir: checkpoints
+  save_interval: 1
+  
+device: cpu
+seed: 42
